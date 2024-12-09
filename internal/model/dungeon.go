@@ -12,19 +12,17 @@ type DungeonNode interface {
 
 type DungeonNodeBase struct {
 	// enter and leave need to be implemented
+	grid [][]*int
 }
 
 type Room struct {
 	DungeonNodeBase
 	corridors []*Connector
-	grid      [][]*int // 0 = wall, 1 = room
-
 }
 
 type Connector struct {
 	DungeonNodeBase
-	connectedRooms []*Room  // 2 rooms connected by this connector
-	grid           [][]*int // 0 = wall, 1 = room
+	connectedRooms []*Room // 2 rooms connected by this connector
 }
 
 type Grid struct {
@@ -40,8 +38,16 @@ const (
 )
 
 type cell struct {
-	character *Character
 	cellType  CellType
+	character *Character
+}
+
+func (node DungeonNodeBase) Enter(c Character) {
+	// stub
+}
+
+func (node DungeonNodeBase) Leave(c Character) {
+	// stub
 }
 
 // custom grid representation?
