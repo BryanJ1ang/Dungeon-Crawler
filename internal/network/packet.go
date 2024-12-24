@@ -7,16 +7,28 @@ import (
 )
 
 type PacketType interface {
-    Encode() ([]byte, error)
-    Decode(data []byte) error
+	Encode() ([]byte, error)
+	Decode(data []byte) error
 }
 
+const (
+	PacketTypeMovement uint8 = iota
+	PacketTypeBattle
+)
+
 type MovementPacket struct {
-	// messageType: "move"
 	// direction: 0 = up, 1 = right, 2 = down, 3 = left
-	MessageType string 
-	CharacterID int 
-	Direction int 
+	MessageType uint8
+	CharacterID uint8
+	Direction   uint8
+}
+
+func NewMovementPacket(characterID uint8, direction uint8) MovementPacket {
+	return MovementPacket{
+		MessageType: 0,
+		CharacterID: characterID,
+		Direction:   direction,
+	}
 }
 
 func (m *MovementPacket) Encode() ([]byte, error) {

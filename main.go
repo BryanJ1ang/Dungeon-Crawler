@@ -2,6 +2,8 @@ package main
 
 import (
 	"net/http"
+
+	"github.com/BryanJ1ang/Dungeon-Crawler/internal/network"
 )
 
 func main() {
@@ -12,7 +14,7 @@ func main() {
 
 	// http.ListenAndServe(":8080", mux)
 
-	StartGameServer("7777")
+	network.StartGameServer("7777")
 }
 
 type gameHandler struct{}
